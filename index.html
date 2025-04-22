@@ -189,39 +189,40 @@ k.p.toString(16)+", data=0x"+p.toString(16)))}return m};t.L=function(a){this.j=a
         window.focus();
       }, true);
     </script>
-    <div id="controls">
-        <button class="control-button" id="leftButton">Left</button>
-        <button class="control-button" id="jumpButton">Jump</button>
-        <button class="control-button" id="rightButton">Right</button>
-    </div>
     <script>
-        const leftButton = document.getElementById("leftButton");
-        const jumpButton = document.getElementById("jumpButton");
-        const rightButton = document.getElementById("rightButton");
+      const leftButton = document.getElementById("leftButton");
+      const jumpButton = document.getElementById("jumpButton");
+      const rightButton = document.getElementById("rightButton");
 
-        leftButton.addEventListener("click", () => {
-            if (typeof Module !== 'undefined' && typeof Module.moveLeft === 'function') {
-                Module.moveLeft();
-            } else {
-                console.error("Module.moveLeft() is not available.");
-            }
+      function dispatchKeyEvent(type, key) {
+        const event = new KeyboardEvent(type, {
+          key: key,
+          code: key, // Use the same value for code and key for simplicity
+          bubbles: true,
+          cancelable: true,
+          view: window,
         });
+        window.dispatchEvent(event);
+      }
 
-        jumpButton.addEventListener("click", () => {
-            if (typeof Module !== 'undefined' && typeof Module.jump === 'function') {
-                Module.jump();
-            } else {
-                console.error("Module.jump() is not available.");
-            }
-        });
+      function simulateKeyPress(key) {
+        dispatchKeyEvent("keydown", key);
+        setTimeout(() => {
+          dispatchKeyEvent("keyup", key);
+        }, 50); // 50ms delay to simulate key release
+      }
 
-        rightButton.addEventListener("click", () => {
-            if (typeof Module !== 'undefined' && typeof Module.moveRight === 'function') {
-                Module.moveRight();
-            } else {
-                console.error("Module.moveRight() is not available.");
-            }
-        });
+      leftButton.addEventListener("click", () => {
+        simulateKeyPress("ArrowLeft");
+      });
+
+      jumpButton.addEventListener("click", () => {
+        simulateKeyPress("Space");
+      });
+
+      rightButton.addEventListener("click", () => {
+        simulateKeyPress("ArrowRight");
+      });
     </script>
     <script>
       window.addEventListener('load',function(){window.focus()});
