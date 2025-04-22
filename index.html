@@ -29,6 +29,27 @@
                 width: 50%;
                 height: 8px
             }
+            #controls {
+                position: absolute;
+                bottom: 20px;
+                left: 0;
+                right: 0;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 100%;
+            }
+
+            .control-button {
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 18px;
+                cursor: pointer;
+            }
+
         </style>
     </head>
   <body>
@@ -189,5 +210,52 @@ k.p.toString(16)+", data=0x"+p.toString(16)))}return m};t.L=function(a){this.j=a
         window.focus();
       }, true);
     </script>
+    <div id="controls">
+        <button class="control-button" id="leftButton">Left</button>
+        <button class="control-button" id="jumpButton">Jump</button>
+        <button class="control-button" id="rightButton">Right</button>
+    </div>
+    <script>
+        const leftButton = document.getElementById("leftButton");
+        const jumpButton = document.getElementById("jumpButton");
+        const rightButton = document.getElementById("rightButton");
+
+        leftButton.addEventListener("click", () => {
+            if (typeof Module !== 'undefined' && typeof Module.moveLeft === 'function') {
+                Module.moveLeft();
+            } else {
+                console.error("Module.moveLeft() is not available.");
+            }
+        });
+
+        jumpButton.addEventListener("click", () => {
+            if (typeof Module !== 'undefined' && typeof Module.jump === 'function') {
+                Module.jump();
+            } else {
+                console.error("Module.jump() is not available.");
+            }
+        });
+
+        rightButton.addEventListener("click", () => {
+            if (typeof Module !== 'undefined' && typeof Module.moveRight === 'function') {
+                Module.moveRight();
+            } else {
+                console.error("Module.moveRight() is not available.");
+            }
+        });
+    </script>
+    <script>
+      window.addEventListener('load',function(){window.focus()});
+      window.addEventListener('mousedown', function () {
+        document.activeElement.blur();
+        window.focus();
+      }, true);
+    </script>
+    <div id="controls">
+        <button class="control-button" id="leftButton">Left</button>
+        <button class="control-button" id="jumpButton">Jump</button>
+        <button class="control-button" id="rightButton">Right</button>
+    </div>
+
   </body>
 </html>
