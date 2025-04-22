@@ -189,47 +189,5 @@ k.p.toString(16)+", data=0x"+p.toString(16)))}return m};t.L=function(a){this.j=a
         window.focus();
       }, true);
     </script>
-    <script>
-      const leftButton = document.getElementById("leftButton");
-      const jumpButton = document.getElementById("jumpButton");
-      const rightButton = document.getElementById("rightButton");
-
-      function dispatchKeyEvent(type, key) {
-        const event = new KeyboardEvent(type, {
-          key: key,
-          code: key, // Use the same value for code and key for simplicity
-          bubbles: true,
-          cancelable: true,
-          view: window,
-        });
-        window.dispatchEvent(event);
-      }
-
-      function simulateKeyPress(key) {
-        dispatchKeyEvent("keydown", key);
-        setTimeout(() => {
-          dispatchKeyEvent("keyup", key);
-        }, 50); // 50ms delay to simulate key release
-      }
-
-      leftButton.addEventListener("click", () => {
-        simulateKeyPress("ArrowLeft");
-      });
-
-      jumpButton.addEventListener("click", () => {
-        simulateKeyPress("Space");
-      });
-
-      rightButton.addEventListener("click", () => {
-        simulateKeyPress("ArrowRight");
-      });
-    </script>
-    <script>
-      window.addEventListener('load',function(){window.focus()});
-      window.addEventListener('mousedown', function () {
-        document.activeElement.blur();
-        window.focus();
-      }, true);
-    </script>
   </body>
 </html>
